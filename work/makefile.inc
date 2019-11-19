@@ -25,9 +25,9 @@ base-chroot: /usr/sbin/debootstrap /usr/share/keyrings/debian-ports-archive-keyr
 
 #Perform the first stage bootstrap
 work/debian-riscv64-chroot/usr/bin/apt:
-	sudo debootstrap --arch=riscv64 --variant=minbase --keyring=/etc/apt/trusted.gpg \
+	sudo debootstrap  --no-check-gpg --arch=riscv64 --variant=minbase --keyring=/etc/apt/trusted.gpg \
 	      --include=gnupg,nfs-common,e2fsprogs,busybox --exclude=cgmanager sid work/debian-riscv64-chroot \
-	      http://deb.debian.org/debian-ports || exit 1
+	      http://ftp.ports.debian.org/debian-ports/ || exit 1
 #Update sources.list
 	sudo cp work/sources.list work/debian-riscv64-chroot/etc/apt
 #Install the signing key
